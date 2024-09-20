@@ -1,20 +1,149 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "mongodb"
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum UserType {
+    VOLUNTEER
+    ORGANISATION
+}
 
-    @@index([name])
+model User {
+    id       String   @id @default(auto()) @map("_id") @db.ObjectId
+    name     String
+    email    String   @unique
+    type     UserType
+    location String
+
+    notifications   Notification[]
+    volunteerHours  VolunteerHours[]
+    opportunities   VolunteerOpportunity[]
+    writtenReviews  Review[]               @relation("writtenReviews")
+    receivedReviews Review[]               @relation("receivedReviews")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    employer       Organisation? @relation("staff", fields: [organisationId], references: [id])
+    organisationId String?       @db.ObjectId
+}
+
+model Organisation {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    name     String
+    location String
+
+    reviews       Review[]
+    opportunities Opportunity[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    staff User[] @relation("staff")
+}
+
+enum OpportunityStatus {
+    PENDING
+    ACTIVE
+    CLOSED
+}
+
+model Opportunity {
+    id                   String                 @id @default(auto()) @map("_id") @db.ObjectId
+    title                String
+    description          String
+    status               OpportunityStatus
+    location             String
+    confirmHoursDeadline Int?
+    volunteers           VolunteerOpportunity[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    organisation   Organisation? @relation(fields: [organisationId], references: [id])
+    organisationId String?       @db.ObjectId
+}
+
+enum HoursStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+model VolunteerHours {
+    id     String      @id @default(auto()) @map("_id") @db.ObjectId
+    hours  Float
+    status HoursStatus @default(PENDING)
+
+    loggedAt  DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    volunteer   User   @relation(fields: [volunteerId], references: [id])
+    volunteerId String @db.ObjectId
+}
+
+enum NotificationType {
+    HOURS_REMINDER
+    REVIEW_REMINDER
+    HOURS_CONFIRMATION
+}
+
+enum NotificationStatus {
+    PENDING
+    SENT
+    READ
+}
+
+model Notification {
+    id      String             @id @default(auto()) @map("_id") @db.ObjectId
+    message String
+    type    NotificationType
+    status  NotificationStatus @default(PENDING)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @db.ObjectId
+}
+
+model Review {
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    content String
+    rating  Int
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+
+    // Relations
+    reviewer   User   @relation("writtenReviews", fields: [reviewerId], references: [id])
+    reviewerId String @db.ObjectId
+
+    // Reviewed things
+    reviewedUser   User?         @relation("receivedReviews", fields: [reviewedUserId], references: [id])
+    reviewedUserId String?       @db.ObjectId
+    organisation   Organisation? @relation(fields: [organisationId], references: [id])
+    organisationId String?       @db.ObjectId
+}
+
+model VolunteerOpportunity {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    user          User        @relation(fields: [userId], references: [id])
+    userId        String      @db.ObjectId
+    opportunity   Opportunity @relation(fields: [opportunityId], references: [id])
+    opportunityId String      @db.ObjectId
+
+    @@unique([userId, opportunityId])
 }
