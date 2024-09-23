@@ -2,15 +2,10 @@ import "@/styles/globals.css";
 
 import { type Metadata } from "next";
 
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { GeistSans } from "geist/font/sans";
 
+import { NavBar } from "@/components/nav-bar";
 import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
@@ -26,12 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          <NavBar />
           <TRPCReactProvider>{children}</TRPCReactProvider>
         </body>
       </html>
