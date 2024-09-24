@@ -15,10 +15,10 @@ interface StepProps {
 export const Steps: React.FC<StepProps> = ({ steps, useImgCard = false }) => {
   return (
     <section className="px-6 py-20 text-center">
-      <h2 className="mb-6 text-3xl font-black tracking-tight text-secondary-foreground">
+      <h2 className="mb-6 text-4xl font-black tracking-tight text-secondary-foreground">
         How It Works
       </h2>
-      <div className="flex flex-col justify-center space-y-6 sm:flex-row sm:space-x-8 sm:space-y-0">
+      <div className="flex flex-col justify-center space-y-6 sm:flex-row sm:space-x-2 sm:space-y-0 lg:space-x-6">
         {steps.map((step, index) =>
           useImgCard ? (
             <FadeImgCard

@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div>
-      <section className="hero flex flex-col gap-6 bg-secondary px-6 py-20 text-center">
+      <section className="flex flex-col justify-center gap-6 bg-secondary px-6 py-40 text-center">
         <h1 className="text-primary-950 text-5xl font-black leading-[1.2] tracking-tight">
           Volunteer and{" "}
           <span className="text-primary-500 border-primary-950 border-b-4">
