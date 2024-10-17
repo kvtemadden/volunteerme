@@ -29,10 +29,10 @@ const Home = () => {
 
   return (
     <div>
-      <section className="flex min-h-screen flex-col items-center gap-20 bg-secondary p-5 pt-10 sm:p-10 lg:flex-row lg:justify-center lg:p-20">
+      <section className="flex min-h-[75vh] flex-col items-center justify-center gap-20 bg-secondary p-5 pt-10 sm:p-10 lg:min-h-screen lg:flex-row lg:p-20">
         <div className="flex flex-col gap-8">
           <h1 className="leading-tighter z-10 max-w-2xl text-5xl font-bold tracking-tighter text-primary-950 sm:text-6xl lg:text-6xl">
-            Find out where
+            Find out how
             <span className="italic">you can help</span> your community
           </h1>
 
@@ -40,7 +40,7 @@ const Home = () => {
         </div>
 
         <div
-          className="h-80 w-80 max-w-xl rounded-lg outline outline-4 outline-offset-2 outline-primary-950 sm:h-96 sm:w-96"
+          className="hidden h-80 w-full max-w-xl rounded-lg outline outline-4 outline-offset-2 outline-primary-950 lg:block lg:h-96 lg:w-96"
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1522543558187-768b6df7c25c')",
