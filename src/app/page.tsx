@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 import { CallToAction } from "../components/call-to-action";
 import { Steps } from "../components/step-section";
@@ -31,22 +30,39 @@ const Home = () => {
 
   return (
     <div>
-      <section className="flex flex-col justify-center gap-6 bg-secondary px-6 py-40 text-center">
-        <h1 className="text-primary-950 text-5xl font-black leading-[1.2] tracking-tight">
-          Volunteer and{" "}
-          <span className="text-primary-500 border-primary-950 border-b-4">
-            Make a Difference
-          </span>
-        </h1>
-        <p className="mt-4 text-xl tracking-tight text-secondary-foreground/60">
-          Join our platform to connect with volunteering opportunities in your
-          community.
-        </p>
-        <Link href="/sign-up">
-          <Button color="primary" size="lg" className="mx-auto w-fit">
-            Create an account
-          </Button>
-        </Link>
+      <section className="flex min-h-screen flex-col items-center gap-20 bg-secondary p-5 pt-10 sm:p-10 lg:flex-row lg:justify-center lg:p-20">
+        <div className="flex flex-col gap-8">
+          <h1 className="leading-tighter z-10 max-w-2xl text-5xl font-bold tracking-tighter text-primary-950 sm:text-6xl lg:text-6xl">
+            Find out where
+            <span className="italic">you can help</span> your community
+          </h1>
+
+          <div className="flex max-w-lg flex-row items-center">
+            <Input
+              placeholder="Search for volunteering opportunities..."
+              className="h-11 rounded-r-none border border-r-0 border-primary-950 text-lg tracking-wide text-opacity-50 focus-visible:ring-0 focus-visible:ring-offset-0"
+            />
+
+            <Button
+              color="primary"
+              size="lg"
+              className="w-fit rounded-none rounded-r-md border border-primary-950"
+            >
+              Search
+            </Button>
+          </div>
+        </div>
+
+        <div
+          className="h-80 w-80 max-w-xl rounded-lg outline outline-4 outline-offset-2 outline-primary-950 sm:h-96 sm:w-96"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1522543558187-768b6df7c25c')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
       </section>
 
       <Steps steps={steps} useImgCard />
