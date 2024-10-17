@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { SearchBar } from "@/components/search-bar";
 
 import { CallToAction } from "../components/call-to-action";
 import { Steps } from "../components/step-section";
@@ -37,20 +36,7 @@ const Home = () => {
             <span className="italic">you can help</span> your community
           </h1>
 
-          <div className="flex max-w-lg flex-row items-center">
-            <Input
-              placeholder="Search for volunteering opportunities..."
-              className="h-11 rounded-r-none border border-r-0 border-primary-950 text-lg tracking-wide text-opacity-50 focus-visible:ring-0 focus-visible:ring-offset-0"
-            />
-
-            <Button
-              color="primary"
-              size="lg"
-              className="w-fit rounded-none rounded-r-md border border-primary-950"
-            >
-              Search
-            </Button>
-          </div>
+          <SearchBar />
         </div>
 
         <div
