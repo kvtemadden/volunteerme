@@ -3,7 +3,7 @@ import { SignIn } from "@clerk/nextjs";
 export default function Page() {
   return (
     <div className="flex w-full items-center justify-center pt-6 sm:-mt-14 sm:min-h-screen">
-      <div className="flex h-[405px] w-[390px] justify-center overflow-hidden rounded border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-900">
+      <div className="flex h-[435px] w-[390px] justify-center overflow-hidden rounded border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-900 dark:shadow-neutral-900">
         <div className="w-fit">
           <SignIn
             appearance={{
