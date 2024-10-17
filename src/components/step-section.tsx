@@ -1,4 +1,3 @@
-import { CircleImgCard } from "./circle-img-card";
 import { FadeImgCard } from "./fade-img-card";
 
 interface Step {
