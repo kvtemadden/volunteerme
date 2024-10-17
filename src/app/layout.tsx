@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Wix_Madefor_Display } from "next/font/google";
+import { Mulish } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const font = Wix_Madefor_Display({
+const font = Mulish({
   subsets: ["latin"],
   weight: ["400", "500", "700", "800"],
   variable: "--font-sans",

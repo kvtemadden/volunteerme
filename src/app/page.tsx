@@ -32,8 +32,8 @@ const Home = () => {
       <section className="flex min-h-[75vh] flex-col items-center justify-center gap-20 bg-secondary p-5 pt-10 sm:p-10 lg:min-h-screen lg:flex-row lg:p-20">
         <div className="flex flex-col gap-8">
           <h1 className="leading-tighter z-10 max-w-2xl text-5xl font-bold tracking-tighter text-primary-950 sm:text-6xl lg:text-6xl">
-            Find out how
-            <span className="italic">you can help</span> your community
+            Find out how <span className="italic">you can help</span> your
+            community
           </h1>
 
           <SearchBar />
